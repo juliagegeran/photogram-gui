@@ -1,0 +1,38 @@
+<h1><%=@user_record.username%></h1>
+
+<dl>
+  <dt>ID</dt>
+    <dd><%=@user_record.id%></dd>
+  <dt>Edit user</dt>
+    <dd>
+      <form action="/update_user_details" method = "post">
+        <input type="hidden" id = "old_username_field" name = "old_username">
+        <label for="new_username_field">Username</label>
+        <input type="text" id = "new_username_field" name = "new_username" value = "<%=@user_record.username%>">
+        <button>Update user</button>
+      
+      </form>
+    </dd>
+</dl>
+
+<h1>Own photos (<%=@user_record.own_photos.count%>)</h1>
+
+<table border = "1">
+  <tr>
+    <th>Image</th>
+    <th>Owner</th>
+    <th>Caption</th>
+    <th>Posted</th>
+    <th></th>
+  </tr>
+
+  <%@user_record.own_photos.each do |each_image|%>
+  <tr>
+    <td><img src="<%=each_image.image%>"></td>
+    <td><%=each_image.poster.username%></td>
+    <td><%=each_image.caption%></td>
+    <td><%=each_image.created_at%></td>
+    <td><a href="/photos/<%=each_image.id%>">Show details</a></td>
+  </tr>
+  <%end%>
+</table>

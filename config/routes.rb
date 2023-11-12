@@ -3,17 +3,17 @@ Rails.application.routes.draw do
   #home page
   get("/", {:controller => "users", :action => "home"})
 
-  # #list of users
+  #list of users
    get("/users", {:controller => "users", :action => "index"})
 
-  # #details of each user
-  # get("users/:user_name", {:controller => "users", :action =>"show"})
+  #add a new user
+  post("/add_new_user", {:controller => "users", :action => "add"})
 
-  # #update user details
-  # post("/update_user_details", {:controller => "users", :action => "modify"})
+  #details of each user
+  get("users/:username", {:controller => "users", :action =>"show"})
 
-  # #add a new user
-  # post("/add_new_user", {:controller => "users", :action => "add"})
+  #update user details
+  post("/update_user_details", {:controller => "users", :action => "modify"})
 
   # #list of photos
   # get("/photos", {:controller => "photos", :action => "index"})
