@@ -1,0 +1,63 @@
+<h1>Photo Details</h1>
+
+<dl>
+  <dt>Image</dt>
+    <dd><img src="<%=@photo_record.image%>" alt="<%=@photo_record.image%>"></dd>
+  <dt>Caption</dt>
+    <dd><p><%=@photo_record.caption%></p></dd>
+  <dt>Owner</dt>
+    <dd><%=@photo_record.poster.username%></dd>
+  <dt>Posted</dt>
+    <dd><%=@photo_record.created_at%></dd>
+  <dt>Edit photo</dt>
+    <dd>
+      <form action="/update_photo/<%=@photo_record.id.to_s%>" method = "post">
+        <label for="new_image_field">Image</label>
+        <input type="text" id = "new_image_field" name = "new_image" value = "<%=@photo_record.image%>">
+
+        <label for="new_caption_field">Caption</label>
+        <textarea name="new_caption" id="new_caption_field" rows="2"><%=@photo_record.caption%></textarea>
+
+        <button>Update photo</button>
+      </form>
+    </dd>
+  <dt>Delete photo</dt>
+    <dd><a href="/delete_photo/<%=@photo_record.id%>">Delete this photo</a></dd>
+
+</dl>
+
+<h2>Comments</h2>
+
+<table>
+  <tr>
+    <th>Commenter</th>
+    <th>Comment</th>
+    <th>Posted</th>
+  </tr>
+
+  <%@photo_record.comments.all.order(:created_at => :desc).each do |each_comment|%>
+  <tr>
+    <td><%=each_comment.commenter.username%></td>
+    <td><%=each_comment.body%></td>
+    <td><%=each_comment.created_at%></td>
+  </tr>
+  <%end%>
+</table>
+
+<h3>Add a new comment</h3>
+
+<div>
+  <form action="/add_new_comment" method = "post">
+    <label for="new_photo_id_field">Photo ID</label>
+    <input type="text" id = "new_photo_id_field" name = "new_photo_id" value = <%=@photo_record.id%>>
+    
+    <label for="new_author_id_field">Author ID</label>
+    <input type="text" id = "new_author_id_field" name = "new_author_id" placeholder = "Enter your author ID">
+
+    <label for="new_comment_field">Comment</label>
+    <textarea name="new_comment" id="new_comment_field" rows="2" placeholder = "Enter a comment..."></textarea>
+  
+    <button>Add comment</button>
+  </form>
+
+</div>
