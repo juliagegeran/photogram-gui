@@ -5,8 +5,7 @@
     <dd><%=@user_record.id%></dd>
   <dt>Edit user</dt>
     <dd>
-      <form action="/update_user_details" method = "post">
-        <input type="hidden" id = "old_username_field" name = "old_username">
+      <form action="/update_user_details/#{@user_record.username}" method = "post">
         <label for="new_username_field">Username</label>
         <input type="text" id = "new_username_field" name = "new_username" value = "<%=@user_record.username%>">
         <button>Update user</button>

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     old_username = params.fetch("old_username")
     new_username = params.fetch("new_username")
     user_record = User.where(:username => old_username).first
-    user_record.username = new_username
+    user_record.name = new_username
     
     user_record.save
     redirect_to("/users/<%=new_username%>")

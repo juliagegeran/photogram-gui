@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get("users/:username", {:controller => "users", :action =>"show"})
 
   #update user details
-  post("/update_user_details", {:controller => "users", :action => "modify"})
+  post("/update_user_details/:old_username", {:controller => "users", :action => "modify"})
 
   # #list of photos
   # get("/photos", {:controller => "photos", :action => "index"})
