@@ -11,7 +11,7 @@ class PhotosController < ApplicationController
 
     new_photo.save
 
-    redirect_to("/photos/:photo_id")
+    redirect_to("/photos/#{new_photo.id}")
   end
 
   def show
